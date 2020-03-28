@@ -1,0 +1,102 @@
+
+• Identificar requerimientos: 
+
+  Funcionales :  Conocer el precio de venta de las prendas y sus tipos, registrar las ventas de dichas prendas y las ganancias que estas generan.
+
+  No Funcionales : -
+
+• Presentar una solución usando el paradigma de objetos (pseudocódigo, diagrama de clases)
+
+
+
+class Prenda{
+	
+	var property tipo
+	var property estado
+	var property precioBase
+	
+	method precio(){
+		return estado.calcularPrecio(precioBase)
+	}
+}
+	
+	
+object nueva {
+	
+	method calcularPrecio(precioBase){
+		return precioBase
+	}
+}
+
+class Promocion {
+	
+	var property valorPromocion
+	
+	method calcularPrecio(precioBase){
+		return 0.max(precioBase - valorPromocion) 
+	}
+	
+}
+
+object liquidacion{
+	
+	method calcularPrecio(precioBase){
+		return precioBase/2
+	}
+}
+
+class Venta{
+	
+	var property prendas = []
+	var property fecha
+	var property metodoDePago
+	
+	
+	method calcularGanancias(){
+		return metodoDePago.calcularGanancia(prendas.sum({prenda => 
+			prenda.precio()
+		}))
+	}
+}
+
+object efectivo{
+	
+	method calcularGanacia(unPrecio){
+		return unPrecio
+	}
+}
+
+class Tarjeta{
+	
+	var property cuotas
+	var property coeficiente 
+	
+	method calcularGanancia(unPrecio){
+		return unPrecio + (cuotas*coeficiente*(0.01*unPrecio))
+	}
+}
+
+
+
+
+Explicación :
+
+Se utilizó composición para resolver el apartado de los tipos de cada prenda y así asignar correctamente
+las responzabilidades, lo mismo sucede con los metodos de pagos en las ventas (por ende los casos en los que
+esto no es así fueron descartados).
+
+Los tipos "nueva" , "liquidacion" y el metodo de pago "efectivo" son objetos y no clases pues su comportamiento
+es indiferente en todos los casos.
+
+La cantidad de prendas no fue implementada dado que no es de utilidad en ningun momento, además de
+que el cliente no lo especificó como un requerimiento.
+
+
+
+
+
+
+
+
+
+
